@@ -112,6 +112,7 @@ CGFloat angleBetweenLinesInDegrees(CGPoint beginLineA,
         if ([target respondsToSelector: @selector(rotation:)])
         {
             [target rotation:angle];
+            [target cumulatedScroll:cumulatedAngle];
         }
     }
     else

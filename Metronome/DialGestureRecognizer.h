@@ -13,6 +13,7 @@
 @optional
 - (void) rotation: (CGFloat) angle;
 - (void) finalAngle: (CGFloat) angle;
+- (void) cumulatedScroll: (CGFloat) angle;
 @end
 
 @interface DialGestureRecognizer : UIGestureRecognizer

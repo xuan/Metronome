@@ -11,7 +11,7 @@
 
 @protocol RotaryDelegate
 @required
--(void)setBpm:(NSString*)bpm;
+-(void)rotaryValue:(NSNumber*)val;
 -(void)setUIColor:(UIColor*)color;
 @end
 
