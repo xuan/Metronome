@@ -6,15 +6,20 @@
 //  Copyright (c) 2013 Xuan Nguyen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@protocol MetronomePlayerDelegate
+@optional
+-(void)tickInterval:(NSNumber*)tick;
+@end
 
-@interface MetronomePlayer : NSObject
+@interface MetronomePlayer : NSObject<MetronomePlayerDelegate>
 
 @property NSNumber *bpmInterval;
 @property NSNumber *signature;
+@property (nonatomic, assign) id <MetronomePlayerDelegate> delegate;
 
 - (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval;
 
 - (void)startMetronome;
 - (void)stopMetronome;
+
 @end

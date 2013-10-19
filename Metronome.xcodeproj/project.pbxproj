@@ -13,6 +13,7 @@
 		AF0EA0501810B86E00CA0D35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF0EA04F1810B86E00CA0D35 /* OpenAL.framework */; };
 		AF0EA0521810BA6B00CA0D35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA06EC418105F2D00067C66 /* Main.storyboard */; };
 		AF0EA0531810BA7000CA0D35 /* tick.caf in Resources */ = {isa = PBXBuildFile; fileRef = AF0EA0511810B97100CA0D35 /* tick.caf */; };
+		AF7378D7181247BC00172D6D /* BeatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7378D6181247BC00172D6D /* BeatButton.m */; };
 		AFA06EB318105F2D00067C66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA06EB218105F2D00067C66 /* Foundation.framework */; };
 		AFA06EB518105F2D00067C66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA06EB418105F2D00067C66 /* CoreGraphics.framework */; };
 		AFA06EB718105F2D00067C66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA06EB618105F2D00067C66 /* UIKit.framework */; };
@@ -52,6 +53,8 @@
 		AF0EA04D1810B64E00CA0D35 /* AudioSamplePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSamplePlayer.m; sourceTree = "<group>"; };
 		AF0EA04F1810B86E00CA0D35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		AF0EA0511810B97100CA0D35 /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick.caf; sourceTree = "<group>"; };
+		AF7378D5181247BC00172D6D /* BeatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatButton.h; sourceTree = "<group>"; };
+		AF7378D6181247BC00172D6D /* BeatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatButton.m; sourceTree = "<group>"; };
 		AFA06EAF18105F2D00067C66 /* Metronome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metronome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA06EB218105F2D00067C66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AFA06EB418105F2D00067C66 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,19 @@
 			name = AudioSamplePlayer;
 			sourceTree = "<group>";
 		};
+		AF7378D41812476900172D6D /* Rotary */ = {
+			isa = PBXGroup;
+			children = (
+				AFA06EF1181062A500067C66 /* DialGestureRecognizer.h */,
+				AFA06EF2181062A500067C66 /* DialGestureRecognizer.m */,
+				AFA06EEB1810623700067C66 /* DialView.h */,
+				AFA06EEC1810623700067C66 /* DialView.m */,
+				AFA06EF41810630100067C66 /* RotaryViewController.h */,
+				AFA06EF51810630100067C66 /* RotaryViewController.m */,
+			);
+			name = Rotary;
+			sourceTree = "<group>";
+		};
 		AFA06EA618105F2D00067C66 = {
 			isa = PBXGroup;
 			children = (
@@ -162,25 +178,22 @@
 		AFA06EB818105F2D00067C66 /* Metronome */ = {
 			isa = PBXGroup;
 			children = (
-				AF0EA0511810B97100CA0D35 /* tick.caf */,
-				AF0EA04B1810B64000CA0D35 /* AudioSamplePlayer */,
-				AF0EA0421810A28300CA0D35 /* RealTimeBlur */,
 				AFA06EC118105F2D00067C66 /* AppDelegate.h */,
 				AFA06EC218105F2D00067C66 /* AppDelegate.m */,
-				AFA06EF1181062A500067C66 /* DialGestureRecognizer.h */,
-				AFA06EF2181062A500067C66 /* DialGestureRecognizer.m */,
-				AFA06EEB1810623700067C66 /* DialView.h */,
-				AFA06EEC1810623700067C66 /* DialView.m */,
+				AF0EA04B1810B64000CA0D35 /* AudioSamplePlayer */,
+				AF7378D5181247BC00172D6D /* BeatButton.h */,
+				AF7378D6181247BC00172D6D /* BeatButton.m */,
 				AFA06ECA18105F2D00067C66 /* Images.xcassets */,
 				AFA06EC418105F2D00067C66 /* Main.storyboard */,
-				AFA06EE7181061E300067C66 /* MHRotaryKnob */,
-				AFA06EF41810630100067C66 /* RotaryViewController.h */,
-				AFA06EF51810630100067C66 /* RotaryViewController.m */,
-				AFA06EB918105F2D00067C66 /* Supporting Files */,
-				AFA06EC718105F2D00067C66 /* ViewController.h */,
-				AFA06EC818105F2D00067C66 /* ViewController.m */,
 				AFEE33D618122E2F00302CB0 /* MetronomePlayer.h */,
 				AFEE33D718122E2F00302CB0 /* MetronomePlayer.m */,
+				AFA06EE7181061E300067C66 /* MHRotaryKnob */,
+				AF0EA0421810A28300CA0D35 /* RealTimeBlur */,
+				AF7378D41812476900172D6D /* Rotary */,
+				AFA06EB918105F2D00067C66 /* Supporting Files */,
+				AF0EA0511810B97100CA0D35 /* tick.caf */,
+				AFA06EC718105F2D00067C66 /* ViewController.h */,
+				AFA06EC818105F2D00067C66 /* ViewController.m */,
 			);
 			path = Metronome;
 			sourceTree = "<group>";
@@ -324,6 +337,7 @@
 				AFA06EF61810630100067C66 /* RotaryViewController.m in Sources */,
 				AFA06EC918105F2D00067C66 /* ViewController.m in Sources */,
 				AFA06EEA1810620D00067C66 /* MHRotaryKnob.m in Sources */,
+				AF7378D7181247BC00172D6D /* BeatButton.m in Sources */,
 				AFEE33D818122E2F00302CB0 /* MetronomePlayer.m in Sources */,
 				AFA06EED1810623700067C66 /* DialView.m in Sources */,
 				AFA06EF3181062A500067C66 /* DialGestureRecognizer.m in Sources */,

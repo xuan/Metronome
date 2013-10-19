@@ -9,8 +9,13 @@
 #import "ViewController.h"
 #import "RotaryViewController.h"
 #import "MetronomePlayer.h"
+#import "BeatButton.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet BeatButton *oneBtn;
+@property (weak, nonatomic) IBOutlet BeatButton *twoBtn;
+@property (weak, nonatomic) IBOutlet BeatButton *threeBtn;
+@property (weak, nonatomic) IBOutlet BeatButton *fourBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *bpmLabel;
 
@@ -25,7 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:3] :[NSNumber numberWithInt:40]];
+    self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40]];
+    
+    self.metronomePlayer.delegate = self;
+    
+    
+    [[self oneBtn]on];
+    [[self twoBtn]off];
+    [[self threeBtn]off];
+    [[self fourBtn]off];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -36,6 +49,18 @@
         //register the delegate to receive rotaryValue and setUIColor changes
         [[segue destinationViewController] setDelegate:self];
     }
+}
+
+- (IBAction)oneBtnAction:(id)sender {
+}
+
+- (IBAction)twoBtnAction:(id)sender {
+}
+
+- (IBAction)threeBtnAction:(id)sender {
+}
+
+- (IBAction)fourBtnAction:(id)sender {
 }
 
 -(void)rotaryValue:(NSNumber*)val {
@@ -55,6 +80,10 @@
 -(void)setUIColor:(UIColor*)color
 {
     [[self bpmLabel]setTextColor:color];
+    [[self oneBtn]setColor:color];
+    [[self twoBtn]setColor:color];
+    [[self threeBtn]setColor:color];
+    [[self fourBtn]setColor:color];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,6 +103,34 @@
     }
 }
 
+-(void)tickInterval:(NSNumber*)tick {
+    if([tick intValue] == 1) {
+        [[self oneBtn]on];
+        [[self twoBtn]off];
+        [[self threeBtn]off];
+        [[self fourBtn]off];
+    } else if([tick intValue] == 2) {
+        [[self oneBtn]off];
+        [[self twoBtn]on];
+        [[self threeBtn]off];
+        [[self fourBtn]off];
+    } else if([tick intValue] == 3) {
+        [[self oneBtn]off];
+        [[self twoBtn]off];
+        [[self threeBtn]on];
+        [[self fourBtn]off];
+    }else if([tick intValue] == 4) {
+        [[self oneBtn]off];
+        [[self twoBtn]off];
+        [[self threeBtn]off];
+        [[self fourBtn]on];
+    }else{
+        [[self oneBtn]on];
+        [[self twoBtn]on];
+        [[self threeBtn]on];
+        [[self fourBtn]on];
+    }
+}
 
 
 @end

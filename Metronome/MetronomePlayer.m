@@ -13,6 +13,7 @@
 
 @property int beatNumber;
 @property BOOL isPlaying;
+@property NSString *audio;
 
 @end
 
@@ -22,7 +23,8 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"tick"];
+        self.audio = @"tick";
+        [[AudioSamplePlayer sharedInstance] preloadAudioSample:[self audio]];
         self.signature = [NSNumber numberWithInt:4];
         self.bpmInterval = [NSNumber numberWithInt:40];
     }
@@ -32,6 +34,7 @@
 - (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval {
     self = [super init];
     if (self) {
+        self.audio = audio;
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:audio];
         self.signature = signature;
         self.bpmInterval = bpmInterval;
@@ -74,10 +77,12 @@
          with a different pitch.
          */
         if (self.beatNumber == 1) {
-            [[AudioSamplePlayer sharedInstance] playAudioSample:@"tick" gain:1.0f pitch:1.0f];
+            [[AudioSamplePlayer sharedInstance] playAudioSample:[self audio] gain:1.0f pitch:1.0f];
+            [self sendTick];
         }
         else {
-            [[AudioSamplePlayer sharedInstance] playAudioSample:@"tick" gain:0.8f pitch:0.5f];
+            [[AudioSamplePlayer sharedInstance] playAudioSample:[self audio] gain:0.8f pitch:0.5f];
+            [self sendTick];
         }
         
         /* Increment the beatNumber each time we loop.
@@ -100,6 +105,15 @@
             [NSThread sleepForTimeInterval:0.01];
             currentTime = [NSDate date];
         }
+    }
+    
+    
+}
+
+-(void)sendTick {
+    if([self delegate] != nil) {
+        //send the delegate function with the amount entered by the user
+        [[self delegate]tickInterval:[NSNumber numberWithInt:[self beatNumber]]];
     }
 }
 @end

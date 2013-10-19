@@ -15,7 +15,7 @@
 -(void)setUIColor:(UIColor*)color;
 @end
 
-@interface RotaryViewController : UIViewController <DialGestureRecognizerDelegate>
+@interface RotaryViewController : UIViewController
 
 @end
 

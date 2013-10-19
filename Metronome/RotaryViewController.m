@@ -22,7 +22,8 @@
 
 }
 
-@property(nonatomic,assign)id delegate;
+@property id delegate;
+
 - (void) setupGestureRecognizer;
 
 @end
@@ -100,10 +101,10 @@
     float red = [rotaryValue intValue]/255.0;
     [self setColor:[UIColor colorWithRed:red green:0.0 blue:blue alpha:1.0]];
     
-    if(_delegate != nil) {
+    if([self delegate] != nil) {
         //send the delegate function with the amount entered by the user
-        [_delegate rotaryValue:rotaryValue];
-        [_delegate setUIColor:[UIColor colorWithRed:red green:0.0 blue:blue alpha:1.0]];
+        [[self delegate]rotaryValue:rotaryValue];
+        [[self delegate] setUIColor:[UIColor colorWithRed:red green:0.0 blue:blue alpha:1.0]];
     }
 }
 
