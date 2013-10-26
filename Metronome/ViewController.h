@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RotaryViewController.h"
 #import "MetronomePlayer.h"
+#import "RotaryWheel.h"
 
-@interface ViewController : UIViewController <RotaryDelegate, MetronomePlayerDelegate>
+@interface ViewController : UIViewController <RotaryWheelProtocol,MetronomePlayerDelegate>
 
 @end

@@ -11,13 +11,12 @@
 -(void)tickInterval:(NSNumber*)tick;
 @end
 
-@interface MetronomePlayer : NSObject<MetronomePlayerDelegate>
+@interface MetronomePlayer : NSObject
 
 @property NSNumber *bpmInterval;
 @property NSNumber *signature;
-@property (nonatomic, assign) id <MetronomePlayerDelegate> delegate;
 
-- (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval;
+- (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval andDelegate:(id)del;
 
 - (void)startMetronome;
 - (void)stopMetronome;

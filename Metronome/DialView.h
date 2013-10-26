@@ -1,8 +1,8 @@
 //
 //  DialView.h
-//  Metronome
+//  Dial
 //
-//  Created by Xuan Nguyen on 10/17/13.
+//  Created by Xuan Nguyen on 10/21/13.
 //  Copyright (c) 2013 Xuan Nguyen. All rights reserved.
 //
 
@@ -10,4 +10,7 @@
 
 @interface DialView : UIView
 
+@property(nonatomic, strong) UIColor *color;
+
+- (id)initWithFrame:(CGRect)frame andColor:(UIColor*) color;
 @end

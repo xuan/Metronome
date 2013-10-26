@@ -7,12 +7,17 @@
 //
 
 #import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
+#import "MetronomePlayer.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    AVAudioSession* audio = [[AVAudioSession alloc] init];
+    [audio setCategory: AVAudioSessionCategoryPlayback error: nil];
+    [audio setActive: YES error: nil];
     return YES;
 }
 							
@@ -26,6 +31,24 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]) { //Check if our iOS version supports multitasking I.E iOS 4
+        if ([[UIDevice currentDevice] isMultitaskingSupported]) { //Check if device supports mulitasking
+            UIApplication *application = [UIApplication sharedApplication]; //Get the shared application instance
+            __block UIBackgroundTaskIdentifier background_task; //Create a task object
+            background_task = [application beginBackgroundTaskWithExpirationHandler: ^ {
+                [application endBackgroundTask: background_task]; //Tell the system that we are done with the tasks
+                background_task = UIBackgroundTaskInvalid; //Set the task to be invalid
+                //System will be shutting down the app at any point in time now
+            }];
+            //Background tasks require you to use asyncrous tasks
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                //Perform your tasks that your application requires
+                [application endBackgroundTask: background_task]; //End the task so the system knows that you are done with what you need to perform
+                background_task = UIBackgroundTaskInvalid; //Invalidate the background_task
+            });
+        }
+    }
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

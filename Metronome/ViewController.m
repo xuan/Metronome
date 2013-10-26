@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "RotaryViewController.h"
 #import "MetronomePlayer.h"
 #import "BeatButton.h"
+#import "RotaryWheel.h"
+
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet BeatButton *oneBtn;
@@ -30,25 +31,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40]];
-    
-    self.metronomePlayer.delegate = self;
-    
-    
-    [[self oneBtn]on];
-    [[self twoBtn]off];
-    [[self threeBtn]off];
-    [[self fourBtn]off];
+    self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick2" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40] andDelegate:self];
+    RotaryWheel *wheel = [[RotaryWheel alloc] initWithFrame:CGRectMake(0, 0, 300, 300) andDelegate:self];
+    [self.view addSubview:wheel];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Check the segue identifier
-    if ([[segue identifier] isEqualToString:@"rotarySegue"])
-    {
-        //register the delegate to receive rotaryValue and setUIColor changes
-        [[segue destinationViewController] setDelegate:self];
-    }
+- (void) wheelDidChangeValue:(float)newValue {
+    int roundVal = (int) (newValue + 0.5);
+    [[self metronomePlayer]setBpmInterval:[NSNumber numberWithFloat:roundVal]];
+    [[self bpmLabel] setText:[NSString stringWithFormat:@"%i", roundVal]];
 }
 
 - (IBAction)oneBtnAction:(id)sender {
@@ -63,19 +54,7 @@
 - (IBAction)fourBtnAction:(id)sender {
 }
 
--(void)rotaryValue:(NSNumber*)val {
-    //make sure that it does not go under 40 or over 300 range
-    if([val intValue] < 40) {
-        [[self metronomePlayer]setBpmInterval:[NSNumber numberWithInt:40]];
-        [[self bpmLabel] setText:@"40"];
-    } else if([val intValue] > 300) {
-        [[self metronomePlayer]setBpmInterval:[NSNumber numberWithInt:300]];
-        [[self bpmLabel] setText:@"40"];
-    } else {
-        [[self metronomePlayer]setBpmInterval:val];
-        [[self bpmLabel] setText:[val stringValue]];
-    }
-}
+
 
 -(void)setUIColor:(UIColor*)color
 {
@@ -93,7 +72,6 @@
 }
 
 - (IBAction)startClicked:(id)sender {
-    
     if([[[[self startBtn]titleLabel]text] isEqual:@"start"]) {
         [[self startBtn] setTitle:@"stop" forState:UIControlStateNormal];
         [[self metronomePlayer]startMetronome];

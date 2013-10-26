@@ -14,7 +14,7 @@
 @property int beatNumber;
 @property BOOL isPlaying;
 @property NSString *audio;
-
+@property (weak) id <MetronomePlayerDelegate> delegate;
 @end
 
 @implementation MetronomePlayer
@@ -31,9 +31,10 @@
     return self;
 }
 
-- (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval {
+- (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval andDelegate:(id)del{
     self = [super init];
     if (self) {
+        self.delegate = del;
         self.audio = audio;
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:audio];
         self.signature = signature;
