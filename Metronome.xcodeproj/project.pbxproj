@@ -12,6 +12,7 @@
 		AF0EA0531810BA7000CA0D35 /* tick.caf in Resources */ = {isa = PBXBuildFile; fileRef = AF0EA0511810B97100CA0D35 /* tick.caf */; };
 		AF5AA0581813029900B57F74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA06EC418105F2D00067C66 /* Main.storyboard */; };
 		AF5AA05C18130CB300B57F74 /* tick2.caf in Resources */ = {isa = PBXBuildFile; fileRef = AF5AA05B18130BAA00B57F74 /* tick2.caf */; };
+		AF6D15731823304A003A0B43 /* PlayStopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6D15721823304A003A0B43 /* PlayStopButton.m */; };
 		AF7378D7181247BC00172D6D /* BeatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7378D6181247BC00172D6D /* BeatButton.m */; };
 		AF746C88181880850014E3FA /* RotaryWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF746C87181880850014E3FA /* RotaryWheel.m */; };
 		AF746C8B181883000014E3FA /* DialView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF746C8A181883000014E3FA /* DialView.m */; };
@@ -47,6 +48,8 @@
 		AF0EA04F1810B86E00CA0D35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		AF0EA0511810B97100CA0D35 /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick.caf; sourceTree = "<group>"; };
 		AF5AA05B18130BAA00B57F74 /* tick2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick2.caf; sourceTree = "<group>"; };
+		AF6D15711823304A003A0B43 /* PlayStopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStopButton.h; sourceTree = "<group>"; };
+		AF6D15721823304A003A0B43 /* PlayStopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayStopButton.m; sourceTree = "<group>"; };
 		AF7378D5181247BC00172D6D /* BeatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatButton.h; sourceTree = "<group>"; };
 		AF7378D6181247BC00172D6D /* BeatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatButton.m; sourceTree = "<group>"; };
 		AF746C86181880850014E3FA /* RotaryWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotaryWheel.h; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				AF0EA04B1810B64000CA0D35 /* AudioSamplePlayer */,
 				AF7378D5181247BC00172D6D /* BeatButton.h */,
 				AF7378D6181247BC00172D6D /* BeatButton.m */,
+				AF6D15711823304A003A0B43 /* PlayStopButton.h */,
+				AF6D15721823304A003A0B43 /* PlayStopButton.m */,
 				AFA06ECA18105F2D00067C66 /* Images.xcassets */,
 				AFA06EC418105F2D00067C66 /* Main.storyboard */,
 				AFEE33D618122E2F00302CB0 /* MetronomePlayer.h */,
@@ -309,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF6D15731823304A003A0B43 /* PlayStopButton.m in Sources */,
 				AF746C8B181883000014E3FA /* DialView.m in Sources */,
 				AFA06EC918105F2D00067C66 /* ViewController.m in Sources */,
 				AF7378D7181247BC00172D6D /* BeatButton.m in Sources */,

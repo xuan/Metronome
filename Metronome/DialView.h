@@ -10,7 +10,6 @@
 
 @interface DialView : UIView
 
-@property(nonatomic, strong) UIColor *color;
+- (id)initWithFrame:(CGRect)frame;
 
-- (id)initWithFrame:(CGRect)frame andColor:(UIColor*) color;
 @end

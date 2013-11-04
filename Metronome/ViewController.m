@@ -10,6 +10,7 @@
 #import "MetronomePlayer.h"
 #import "BeatButton.h"
 #import "RotaryWheel.h"
+#import "PlayStopButton.h"
 
 
 @interface ViewController ()
@@ -20,7 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bpmLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *startBtn;
+@property (weak, nonatomic) IBOutlet PlayStopButton *startBtn;
 
 @property MetronomePlayer *metronomePlayer;
 
@@ -31,9 +32,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick2" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40] andDelegate:self];
+    self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40] andDelegate:self];
+    
+    UIView *rotaryContainer = [[UIView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
+    
+    
     RotaryWheel *wheel = [[RotaryWheel alloc] initWithFrame:CGRectMake(0, 0, 300, 300) andDelegate:self];
-    [self.view addSubview:wheel];
+    
+    [rotaryContainer addSubview:wheel];
+    [self.view addSubview:rotaryContainer];
 }
 
 - (void) wheelDidChangeValue:(float)newValue {
@@ -72,12 +79,12 @@
 }
 
 - (IBAction)startClicked:(id)sender {
-    if([[[[self startBtn]titleLabel]text] isEqual:@"start"]) {
-        [[self startBtn] setTitle:@"stop" forState:UIControlStateNormal];
-        [[self metronomePlayer]startMetronome];
+    if([[self startBtn] isPlaying]) {
+        [[self startBtn] changePlayState:NO];
+        [[self metronomePlayer]stopMetronome];
     }else {
-        [[self startBtn] setTitle:@"start" forState:UIControlStateNormal];
-        [[self metronomePlayer] stopMetronome];
+        [[self startBtn] changePlayState:YES];
+        [[self metronomePlayer]startMetronome];
     }
 }
 
