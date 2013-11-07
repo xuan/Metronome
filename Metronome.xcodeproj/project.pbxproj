@@ -30,6 +30,7 @@
 		AFA06EDC18105F2D00067C66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFA06EDA18105F2D00067C66 /* InfoPlist.strings */; };
 		AFA06EDE18105F2D00067C66 /* MetronomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA06EDD18105F2D00067C66 /* MetronomeTests.m */; };
 		AFEE33D818122E2F00302CB0 /* MetronomePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEE33D718122E2F00302CB0 /* MetronomePlayer.m */; };
+		AFF96CC11829E8860005671D /* TimeSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF96CC01829E8860005671D /* TimeSignatureView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		AFA06EDD18105F2D00067C66 /* MetronomeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetronomeTests.m; sourceTree = "<group>"; };
 		AFEE33D618122E2F00302CB0 /* MetronomePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetronomePlayer.h; sourceTree = "<group>"; };
 		AFEE33D718122E2F00302CB0 /* MetronomePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetronomePlayer.m; sourceTree = "<group>"; };
+		AFF96CBF1829E8860005671D /* TimeSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignatureView.h; sourceTree = "<group>"; };
+		AFF96CC01829E8860005671D /* TimeSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 			children = (
 				AF746C89181883000014E3FA /* DialView.h */,
 				AF746C8A181883000014E3FA /* DialView.m */,
+				AFF96CBF1829E8860005671D /* TimeSignatureView.h */,
+				AFF96CC01829E8860005671D /* TimeSignatureView.m */,
 				AF746C86181880850014E3FA /* RotaryWheel.h */,
 				AF746C87181880850014E3FA /* RotaryWheel.m */,
 				AF5AA05A18130AD400B57F74 /* sounds */,
@@ -315,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF6D15731823304A003A0B43 /* PlayStopButton.m in Sources */,
+				AFF96CC11829E8860005671D /* TimeSignatureView.m in Sources */,
 				AF746C8B181883000014E3FA /* DialView.m in Sources */,
 				AFA06EC918105F2D00067C66 /* ViewController.m in Sources */,
 				AF7378D7181247BC00172D6D /* BeatButton.m in Sources */,

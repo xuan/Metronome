@@ -47,21 +47,25 @@
 {
     int lineWidth = 20;
     
-    CAShapeLayer *bgLayer = [CAShapeLayer layer];
-    [bgLayer setFillColor:[UIColor clearColor].CGColor];
+    CAShapeLayer *circleLayer = [CAShapeLayer layer];
+    [circleLayer setFillColor:[UIColor clearColor].CGColor];
     
-    UIBezierPath* bgStroke = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(lineWidth, lineWidth, self.bounds.size.height - (lineWidth*2), self.bounds.size.height - (lineWidth*2))];
-    [bgLayer setPath:bgStroke.CGPath];
-    [bgLayer setLineWidth:lineWidth];
-    [bgLayer setStrokeColor:[UIColor blueColor].CGColor];
+    UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(lineWidth, lineWidth, self.bounds.size.height - (lineWidth*2), self.bounds.size.height - (lineWidth*2))];
     
-    [self.layer addSublayer:bgLayer];
+    [circleLayer setLineDashPattern:
+     [NSArray arrayWithObjects:[NSNumber numberWithInt:200],
+      [NSNumber numberWithInt:4],nil]];
+    [circleLayer setPath:circlePath.CGPath];
+    [circleLayer setLineWidth:lineWidth];
+    [circleLayer setStrokeColor:[UIColor blueColor].CGColor];
     
-    CAShapeLayer *dimpleLayer = [CAShapeLayer layer];
-    UIBezierPath* dimpleStroke = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(self.bounds.size.width/2, 13, 15, 15)];
-    [dimpleLayer setPath:dimpleStroke.CGPath];
-    [dimpleLayer setFillColor:[UIColor whiteColor].CGColor];
-    [[self layer]addSublayer:dimpleLayer];
+    [self.layer addSublayer:circleLayer];
+    
+//    CAShapeLayer *dimpleLayer = [CAShapeLayer layer];
+//    UIBezierPath* dimpleStroke = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(self.bounds.size.width/2, 13, 15, 15)];
+//    [dimpleLayer setPath:dimpleStroke.CGPath];
+//    [dimpleLayer setFillColor:[UIColor whiteColor].CGColor];
+//    [[self layer]addSublayer:dimpleLayer];
 }
 
 

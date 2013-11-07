@@ -11,6 +11,7 @@
 #import "BeatButton.h"
 #import "RotaryWheel.h"
 #import "PlayStopButton.h"
+#import "TimeSignatureView.h"
 
 
 @interface ViewController ()
@@ -34,13 +35,20 @@
     [super viewDidLoad];
     self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40] andDelegate:self];
     
+    
+    
     UIView *rotaryContainer = [[UIView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
     
-    
     RotaryWheel *wheel = [[RotaryWheel alloc] initWithFrame:CGRectMake(0, 0, 300, 300) andDelegate:self];
-    
     [rotaryContainer addSubview:wheel];
     [self.view addSubview:rotaryContainer];
+    
+    TimeSignatureView *ts = [[TimeSignatureView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
+    [ts setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:ts];
+    
+    
+    
 }
 
 - (void) wheelDidChangeValue:(float)newValue {
