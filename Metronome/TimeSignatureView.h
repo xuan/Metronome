@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TimeSignature : NSObject
+@interface TimeSignatureView : UIView
+
 
 @end
