@@ -8,17 +8,26 @@
 
 #import "PlayStopButton.h"
 
-@implementation PlayStopButton
-CAShapeLayer *roundLayer;
-CAShapeLayer *stopLayer;
-CAShapeLayer *playLayer;
-BOOL playing = false;
+@interface PlayStopButton()
+
+@property CAShapeLayer *roundLayer;
+@property CAShapeLayer *stopLayer;
+@property CAShapeLayer *playLayer;
+@property BOOL playing;
+
+@end
+
+@implementation PlayStopButton {
+    
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self setPlaying:false];
     }
     return self;
 }
@@ -27,7 +36,7 @@ BOOL playing = false;
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-
+    
     // Drawing code
     [self drawCircle];
     [self drawStop];
@@ -37,32 +46,32 @@ BOOL playing = false;
 }
 
 -(void) drawCircle {
-    roundLayer = [CAShapeLayer layer];
-    [roundLayer setFillColor:[UIColor clearColor].CGColor];
+    [self setRoundLayer:[CAShapeLayer layer]];
+    [[self roundLayer] setFillColor:[UIColor clearColor].CGColor];
     
     UIBezierPath* roundPathPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(4, 4, 48, 48)];
-    [roundLayer setPath:roundPathPath.CGPath];
-    [roundLayer setLineWidth:2];
-    [roundLayer setStrokeColor:[UIColor blueColor].CGColor];
+    [[self roundLayer] setPath:roundPathPath.CGPath];
+    [[self roundLayer] setLineWidth:2];
+    [[self roundLayer] setStrokeColor:[UIColor blueColor].CGColor];
     
-    [[self layer]addSublayer:roundLayer];
+    [[self layer]addSublayer:[self roundLayer]];
 }
 
 -(void) drawStop {
-    stopLayer = [CAShapeLayer layer];
-    [stopLayer setFillColor:[UIColor clearColor].CGColor];
+    [self setStopLayer:[CAShapeLayer layer]];
+    [[self stopLayer] setFillColor:[UIColor clearColor].CGColor];
     
     UIBezierPath* stopPath = [UIBezierPath bezierPathWithRect: CGRectMake(14, 14, 28, 28)];
-    [stopLayer setPath:stopPath.CGPath];
-    [stopLayer setLineWidth:2];
-    [stopLayer setStrokeColor:[UIColor blueColor].CGColor];
+    [[self stopLayer] setPath:stopPath.CGPath];
+    [[self stopLayer] setLineWidth:2];
+    [[self stopLayer] setStrokeColor:[UIColor blueColor].CGColor];
     
-    [[self layer]addSublayer:stopLayer];
+    [[self layer]addSublayer:[self stopLayer]];
 }
 
 -(void) drawPlay {
-    playLayer = [CAShapeLayer layer];
-    [playLayer setFillColor:[UIColor clearColor].CGColor];
+    [self setPlayLayer:[CAShapeLayer layer]];
+    [[self playLayer] setFillColor:[UIColor clearColor].CGColor];
     
     UIBezierPath* playPath = [UIBezierPath bezierPath];
     [playPath moveToPoint: CGPointMake(18.5, 13.5)];
@@ -70,26 +79,26 @@ BOOL playing = false;
     [playPath addLineToPoint: CGPointMake(18.5, 42.5)];
     [playPath addLineToPoint: CGPointMake(18.5, 13.5)];
     [playPath closePath];
-
-    [playLayer setPath:playPath.CGPath];
-    [playLayer setLineWidth:2];
-    [playLayer setStrokeColor:[UIColor blueColor].CGColor];
-    [[self layer]addSublayer:playLayer];
+    
+    [[self playLayer] setPath:playPath.CGPath];
+    [[self playLayer] setLineWidth:2];
+    [[self playLayer] setStrokeColor:[UIColor blueColor].CGColor];
+    [[self layer]addSublayer:[self playLayer]];
 }
 
 -(void)changePlayState:(BOOL) play {
-    playing = play;
+    [self setPlaying:play];
     if(play){
-        [playLayer setOpacity:0.0];
-        [stopLayer setOpacity:1.0];
+        [[self playLayer] setOpacity:0.0];
+        [[self stopLayer] setOpacity:1.0];
     } else {
-        [playLayer setOpacity:1.0];
-        [stopLayer setOpacity:0.0];
+        [[self playLayer] setOpacity:1.0];
+        [[self stopLayer] setOpacity:0.0];
     }
 }
 
 -(BOOL)isPlaying {
-    return playing;
+    return [self playing];
 }
 
 @end

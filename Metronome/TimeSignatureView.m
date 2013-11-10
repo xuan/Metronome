@@ -8,15 +8,17 @@
 
 #import "TimeSignatureView.h"
 
-#define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
+#define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees) / 180)
 
-@implementation TimeSignatureView
+@implementation TimeSignatureView {
+    
+}
 
 - (void)drawRect:(CGRect)rect {
-    [self.layer addSublayer:[self drawButton:1 :44]];
-    [self.layer addSublayer:[self drawButton:46 :89]];
-    [self.layer addSublayer:[self drawButton:91 :134]];
-    [self.layer addSublayer:[self drawButton:136 :179]];
+    [[self layer] addSublayer:[self drawButton:1 :44]];
+    [[self layer] addSublayer:[self drawButton:46 :89]];
+    [[self layer] addSublayer:[self drawButton:91 :134]];
+    [[self layer] addSublayer:[self drawButton:136 :179]];
 }
 
 - (CAShapeLayer*) drawButton : (int) startAngle : (int) endAngle {

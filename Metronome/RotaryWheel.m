@@ -11,52 +11,64 @@
 
 @interface RotaryWheel()
 
+@property UIButton *tapButton;
+@property float deltaAngle;
+@property float cumulatedValue;
+@property double lastTapped;
+
 @end
 
-UIButton *tapButton;
-static float deltaAngle;
-float cumulatedValue = 40;
-double lastTapped = 0;
-
-@implementation RotaryWheel
+@implementation RotaryWheel {
+    
+}
 
 @synthesize container, startTransform;
 
 - (id)init {
-    if ((self = [super init])) {
+    self = [super init];
+    
+    if (self) {
         self.backgroundColor = [UIColor clearColor];
         [self drawWheel];
         [self drawTapButton];
+        [self setCumulatedValue:40];
+        [self setLastTapped:0];
     }
     return self;
 }
 
 - (id)initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
+    self = [super initWithFrame:frame];
+    
+    if (self) {
         self.backgroundColor = [UIColor clearColor];
         [self drawWheel];
         [self drawTapButton];
+        [self setCumulatedValue:40];
+        [self setLastTapped:0];
     }
     return self;
 }
 
 - (id)initWithFrame:(CGRect)frame andDelegate:(id)del {
-    if ((self = [super initWithFrame:frame])) {
-        self.backgroundColor = [UIColor clearColor];
-        self.delegate = del;
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self setDelegate:del];
         [self drawWheel];
         [self drawTapButton];
+        [self setCumulatedValue:40];
+        [self setLastTapped:0];
     }
     return self;
 }
 
 - (void)drawWheel {
-    self.container = [[UIView alloc] initWithFrame:self.frame];
-    DialView *dialView = [[DialView alloc]initWithFrame:self.bounds];
-    
+    [self setContainer:[[UIView alloc] initWithFrame:[self frame]]];
+    DialView *dialView = [[DialView alloc]initWithFrame:[self bounds]];
     [container addSubview:dialView];
-    
-    container.userInteractionEnabled = NO;
+    [container setUserInteractionEnabled:NO];
     [self addSubview:container];
 }
 
@@ -71,15 +83,15 @@ double lastTapped = 0;
     [tapLayer setStrokeColor:[UIColor blueColor].CGColor];
     [tapLayer setBackgroundColor:[UIColor clearColor].CGColor];
     
-    tapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    tapButton.frame = CGRectMake(0,0,150,150);
-    tapButton.center = self.center;
-    [tapButton setBackgroundColor:[UIColor clearColor]];
-    [tapButton.layer addSublayer:tapLayer];
+    [self setTapButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [[self tapButton]setFrame:CGRectMake(0,0,150,150)];
+    [[self tapButton]setCenter:[self center]];
+    [[self tapButton]setBackgroundColor:[UIColor clearColor]];
+    [[[self tapButton]layer]addSublayer:tapLayer];
     
-    [tapButton addTarget:self action:@selector(tapButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [[self tapButton]addTarget:self action:@selector(tapButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    [self addSubview:tapButton];
+    [self addSubview:[self tapButton]];
 }
 
 #pragma mark - Touch Controls
@@ -92,10 +104,10 @@ double lastTapped = 0;
     if (dist < 100 || dist > 150) {
         return  NO;
     }
-    float dx = touchPoint.x - container.center.x;
-    float dy = touchPoint.y - container.center.y;
-    deltaAngle = atan2(dy, dx);
-    startTransform = container.transform;
+    float dx = touchPoint.x - [container center].x;
+    float dy = touchPoint.y - [container center].y;
+    [self setDeltaAngle:atan2(dy, dx)];
+    startTransform = [container transform];
     
     return YES;
 }
@@ -109,16 +121,16 @@ double lastTapped = 0;
         return NO;
     }
     
-    float dx = pt.x - container.center.x;
-    float dy = pt.y - container.center.y;
+    float dx = pt.x - [container center].x;
+    float dy = pt.y - [container center].y;
     float ang = atan2(dy,dx);
-    float angleDifference = deltaAngle - ang;
+    float angleDifference = [self deltaAngle] - ang;
     
     container.transform = CGAffineTransformRotate(startTransform, -angleDifference);
     
     //figure out angle of just-previous touch during movement
-    float preDx = previousPt.x - container.center.x;
-    float preDy = previousPt.y - container.center.y;
+    float preDx = previousPt.x - [container center].x;
+    float preDy = previousPt.y - [container center].y;
     float preAng = atan2(preDy, preDx);
     
     if (fabsf(ang-preAng) < 1) {
@@ -138,14 +150,14 @@ double lastTapped = 0;
                 [self subValue:0.1];
             }
             if (preAng - ang > 0.05 && preAng - ang < 0.2) {
-                if (cumulatedValue > 5) {
+                if ([self cumulatedValue] > 5) {
                     [self subValue:5.0];;
                 }else {
                     [self subValue:1.0];
                 }
             }
             if (preAng - ang > 0.2) {
-                if (cumulatedValue > 10) {
+                if ([self cumulatedValue] > 10) {
                     [self subValue:10.0];
                 }else {
                     [self subValue:1.0];
@@ -160,40 +172,40 @@ double lastTapped = 0;
 #pragma mark - Helper Functions
 
 - (float)calculateDistanceFromCenter:(CGPoint)point {
-    CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    CGPoint center = CGPointMake([self bounds].size.width/2, [self bounds].size.height/2);
     float dx = point.x - center.x;
     float dy = point.y - center.y;
     return sqrt(dx*dx + dy*dy);
 }
 
 - (void)addValue:(float)value{
-    if(cumulatedValue < 400) {
-        cumulatedValue = cumulatedValue + value;
-        [[self delegate]wheelDidChangeValue:cumulatedValue];
+    if(self.cumulatedValue < 400) {
+        [self setCumulatedValue:[self cumulatedValue] + value];
+        [[self delegate]wheelDidChangeValue:[self cumulatedValue]];
     }
 }
 
 - (void)subValue:(float)value{
-    if(cumulatedValue > 40) {
-        cumulatedValue = cumulatedValue - value;
-        [[self delegate]wheelDidChangeValue:cumulatedValue];
+    if(self.cumulatedValue > 40) {
+        [self setCumulatedValue:[self cumulatedValue] - value];
+        [[self delegate]wheelDidChangeValue:[self cumulatedValue]];
     }
 }
 
 - (void)tapButtonPressed {
-    if (lastTapped == 0) {
-        lastTapped = CACurrentMediaTime();
+    if (self.lastTapped == 0) {
+        self.lastTapped = CACurrentMediaTime();
     } else {
         //BPM in seconds = 60,000 / ms
         double now = CACurrentMediaTime();
-        double seconds = now - lastTapped;
+        double seconds = now - [self lastTapped];
         double milliSecondsPartOfCurrentSecond = seconds - (int)seconds;
         double wholeMilliSeconds = (milliSecondsPartOfCurrentSecond * 1000.0);
         
-        cumulatedValue = 60000/wholeMilliSeconds;
-        [[self delegate]wheelDidChangeValue:cumulatedValue];
+        [self setCumulatedValue:60000/wholeMilliSeconds];
+        [[self delegate]wheelDidChangeValue:[self cumulatedValue]];
         
-        lastTapped = now;
+        self.lastTapped = now;
     }
 }
 

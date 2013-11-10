@@ -8,31 +8,29 @@
 
 #import "BeatButton.h"
 
-@interface BeatButton () {
+@interface BeatButton ()
     
-@private CAShapeLayer *circleLayer;
-@private UIColor *color;
-    
-}
+@property CAShapeLayer *circleLayer;
 
 @end
 
-@implementation BeatButton
+@implementation BeatButton {
+    
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
         // Initialization code
-        self.color = [UIColor blueColor];
-
+        [self setChangeColor:[UIColor blueColor]];
+        
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    if([super initWithCoder:aDecoder]) {
-        self.color = [UIColor blueColor];
+    if(self = [super initWithCoder:aDecoder]) {
+        [self setChangeColor:[UIColor blueColor]];
     }
     return self;
 }
@@ -42,24 +40,24 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    circleLayer = [CAShapeLayer layer];
+    [self setCircleLayer:[CAShapeLayer layer]];
     
     // dialStroke Drawing
     UIBezierPath *dialStrokePath = [UIBezierPath bezierPathWithOvalInRect: rect];
-    circleLayer.path = [dialStrokePath CGPath];
-    [circleLayer setFillColor:[UIColor blueColor].CGColor];
-    [self.layer addSublayer:circleLayer];
+    [[self circleLayer] setPath:[dialStrokePath CGPath]];
+    [[self circleLayer] setFillColor:[UIColor blueColor].CGColor];
+    [[self layer] addSublayer:[self circleLayer]];
 }
 
-- (void) setColor:(UIColor*) colorChange {
-    [circleLayer setFillColor:colorChange.CGColor];
+- (void) setChangeColor:(UIColor*) color {
+    [[self circleLayer] setFillColor:color.CGColor];
 }
 
 -(void) on {
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue
                      forKey:kCATransactionDisableActions];
-    circleLayer.hidden = NO;
+    [[self circleLayer] setHidden:NO];
     [CATransaction commit];
 }
 
@@ -67,7 +65,7 @@
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue
                      forKey:kCATransactionDisableActions];
-    circleLayer.hidden = YES;
+    [[self circleLayer] setHidden:YES];
     [CATransaction commit];
 }
 

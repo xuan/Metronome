@@ -15,18 +15,20 @@
 @property BOOL isPlaying;
 @property NSString *audio;
 @property (weak) id <MetronomePlayerDelegate> delegate;
+
 @end
 
-@implementation MetronomePlayer
-
+@implementation MetronomePlayer {
+    
+}
 
 - (id)init {
     self = [super init];
     if (self) {
-        self.audio = @"tick";
+        [self setAudio:@"tick"];
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:[self audio]];
-        self.signature = [NSNumber numberWithInt:4];
-        self.bpmInterval = [NSNumber numberWithInt:40];
+        [self setSignature:[NSNumber numberWithInt:4]];
+        [self setBpmInterval:[NSNumber numberWithInt:40]];
     }
     return self;
 }
@@ -34,18 +36,19 @@
 - (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval andDelegate:(id)del{
     self = [super init];
     if (self) {
-        self.delegate = del;
-        self.audio = audio;
+        [self setDelegate:del];
+        [self setAudio:audio];
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:audio];
-        self.signature = signature;
-        self.bpmInterval = bpmInterval;
+        [self setSignature:signature];
+        [self setBpmInterval:bpmInterval];
     }
     return self;
 }
 
 - (void)startMetronome {
     /* Check to see if we are already playing */
-    if (!self.isPlaying) {
+    if (![self isPlaying]) {
+        
         /* The metronome is a loop that runs until it is cancelled.
          So that it does not interfere with the user interface, it
          should be run on a seperate queue.
@@ -56,8 +59,8 @@
              Reset beatNumber to 1.
              Run the metronome loop.
              */
-            self.isPlaying = YES;
-            self.beatNumber = 1;
+            [self setIsPlaying:YES];
+            [self setBeatNumber:1];
             [self playMetronome];
         });
     }
@@ -67,7 +70,7 @@
     /* Set the continuePlaying flag to NO.
      Reset the beatNumberLabel text.
      */
-    self.isPlaying = NO;
+    [self setIsPlaying:NO];
 }
 
 - (void) playMetronome {
@@ -92,8 +95,8 @@
          beatNumber must return to the first beat.
          */
         self.beatNumber++;
-        if (self.beatNumber > [[self signature]intValue]) {
-            self.beatNumber = 1;
+        if ([self beatNumber] > [[self signature]intValue]) {
+            [self setBeatNumber:1];
         }
         
         /* We need to monitor the time of the last beat so that we can determine
@@ -102,7 +105,7 @@
          */
         NSDate *curtainTime = [NSDate dateWithTimeIntervalSinceNow:60.0 / [[self bpmInterval]doubleValue]];
         NSDate *currentTime = [NSDate date];
-        while (self.isPlaying && ([currentTime compare:curtainTime] != NSOrderedDescending)) {
+        while ([self isPlaying] && ([currentTime compare:curtainTime] != NSOrderedDescending)) {
             [NSThread sleepForTimeInterval:0.01];
             currentTime = [NSDate date];
         }

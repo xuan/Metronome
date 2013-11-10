@@ -15,40 +15,35 @@
 
 
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet BeatButton *oneBtn;
 @property (weak, nonatomic) IBOutlet BeatButton *twoBtn;
 @property (weak, nonatomic) IBOutlet BeatButton *threeBtn;
 @property (weak, nonatomic) IBOutlet BeatButton *fourBtn;
-
 @property (weak, nonatomic) IBOutlet UILabel *bpmLabel;
-
 @property (weak, nonatomic) IBOutlet PlayStopButton *startBtn;
-
 @property MetronomePlayer *metronomePlayer;
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.metronomePlayer = [[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40] andDelegate:self];
-    
-    
+    [self setMetronomePlayer:[[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40] andDelegate:self]];
     
     UIView *rotaryContainer = [[UIView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
+    
+    TimeSignatureView *ts = [[TimeSignatureView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
+    [ts setBackgroundColor:[UIColor clearColor]];
+    [[self view]addSubview:ts];
     
     RotaryWheel *wheel = [[RotaryWheel alloc] initWithFrame:CGRectMake(0, 0, 300, 300) andDelegate:self];
     [rotaryContainer addSubview:wheel];
     [self.view addSubview:rotaryContainer];
-    
-    TimeSignatureView *ts = [[TimeSignatureView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
-    [ts setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:ts];
-    
-    
-    
 }
 
 - (void) wheelDidChangeValue:(float)newValue {
@@ -74,10 +69,10 @@
 -(void)setUIColor:(UIColor*)color
 {
     [[self bpmLabel]setTextColor:color];
-    [[self oneBtn]setColor:color];
-    [[self twoBtn]setColor:color];
-    [[self threeBtn]setColor:color];
-    [[self fourBtn]setColor:color];
+    [[self oneBtn]setChangeColor:color];
+    [[self twoBtn]setChangeColor:color];
+    [[self threeBtn]setChangeColor:color];
+    [[self fourBtn]setChangeColor:color];
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,7 +119,6 @@
         [[self fourBtn]on];
     }
 }
-
 
 @end
 

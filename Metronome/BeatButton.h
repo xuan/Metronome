@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+/*!
+ 
+ */
 @interface BeatButton : UIButton
 
--(void) setColor:(UIColor*) color;
+@property (nonatomic, strong) UIColor *changeColor;
 
 -(void) on;
 
