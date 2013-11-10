@@ -52,7 +52,7 @@
       [NSNumber numberWithInt:4],nil]];
     [circleLayer setPath:circlePath.CGPath];
     [circleLayer setLineWidth:lineWidth];
-    [circleLayer setStrokeColor:[UIColor blueColor].CGColor];
+    [circleLayer setStrokeColor:[UIColor grayColor].CGColor];
     
     [[self layer]addSublayer:circleLayer];
     

@@ -10,6 +10,6 @@
 #import "MetronomePlayer.h"
 #import "RotaryWheel.h"
 
-@interface ViewController : UIViewController <RotaryWheelProtocol,MetronomePlayerDelegate>
+@interface ViewController : UIViewController <RotaryWheelProtocol, MetronomePlayerDelegate>
 
 @end

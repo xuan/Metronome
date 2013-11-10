@@ -22,7 +22,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
-        [self setChangeColor:[UIColor blueColor]];
+        [self setChangeColor:[UIColor grayColor]];
         
     }
     return self;
@@ -30,7 +30,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
-        [self setChangeColor:[UIColor blueColor]];
+        [self setChangeColor:[UIColor grayColor]];
     }
     return self;
 }
@@ -45,7 +45,7 @@
     // dialStroke Drawing
     UIBezierPath *dialStrokePath = [UIBezierPath bezierPathWithOvalInRect: rect];
     [[self circleLayer] setPath:[dialStrokePath CGPath]];
-    [[self circleLayer] setFillColor:[UIColor blueColor].CGColor];
+    [[self circleLayer] setFillColor:[UIColor grayColor].CGColor];
     [[self layer] addSublayer:[self circleLayer]];
 }
 

@@ -80,7 +80,7 @@
     UIBezierPath* tapButtonPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(0, 0, 150, 150)];
     [tapLayer setPath:tapButtonPath.CGPath];
     [tapLayer setLineWidth:2];
-    [tapLayer setStrokeColor:[UIColor blueColor].CGColor];
+    [tapLayer setStrokeColor:[UIColor grayColor].CGColor];
     [tapLayer setBackgroundColor:[UIColor clearColor].CGColor];
     
     [self setTapButton:[UIButton buttonWithType:UIButtonTypeCustom]];

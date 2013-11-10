@@ -11,7 +11,7 @@
 
 @interface MetronomePlayer ()
 
-@property int beatNumber;
+@property int currentBeat;
 @property BOOL isPlaying;
 @property NSString *audio;
 @property (weak) id <MetronomePlayerDelegate> delegate;
@@ -27,19 +27,20 @@
     if (self) {
         [self setAudio:@"tick"];
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:[self audio]];
-        [self setSignature:[NSNumber numberWithInt:4]];
+        [self setTimeValueOfEachBeat:[NSNumber numberWithInt:4]];
         [self setBpmInterval:[NSNumber numberWithInt:40]];
     }
     return self;
 }
 
-- (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval andDelegate:(id)del{
+- (id)initWithAudio:(NSString*)audio numberOfBeatsPerMeasure:(NSNumber*)nbpm timeValueOfEachBeat:(NSNumber*)tvb beatsPerMinute:(NSNumber*)bpmInterval andDelegate:(id)del{
     self = [super init];
     if (self) {
         [self setDelegate:del];
         [self setAudio:audio];
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:audio];
-        [self setSignature:signature];
+        [self setNumberOfBeatsPerMeasure:nbpm];
+        [self setTimeValueOfEachBeat:tvb];
         [self setBpmInterval:bpmInterval];
     }
     return self;
@@ -60,7 +61,7 @@
              Run the metronome loop.
              */
             [self setIsPlaying:YES];
-            [self setBeatNumber:1];
+            [self setCurrentBeat:1];
             [self playMetronome];
         });
     }
@@ -75,12 +76,12 @@
 
 - (void) playMetronome {
     /* We will continue looping until we are asked to stop */
-    while (self.isPlaying) {
+    while ([self isPlaying]) {
         /* The first beat is accented.
          Subsequent beats are played at a lower gain
          with a different pitch.
          */
-        if (self.beatNumber == 1) {
+        if (self.currentBeat == 1) {
             [[AudioSamplePlayer sharedInstance] playAudioSample:[self audio] gain:1.0f pitch:1.0f];
             [self sendTick];
         }
@@ -94,9 +95,9 @@
          time signature. After the 4th beat is played,
          beatNumber must return to the first beat.
          */
-        self.beatNumber++;
-        if ([self beatNumber] > [[self signature]intValue]) {
-            [self setBeatNumber:1];
+        self.currentBeat++;
+        if ([self currentBeat] > [[self timeValueOfEachBeat]intValue]) {
+            [self setCurrentBeat:1];
         }
         
         /* We need to monitor the time of the last beat so that we can determine
@@ -110,14 +111,12 @@
             currentTime = [NSDate date];
         }
     }
-    
-    
 }
 
 -(void)sendTick {
     if([self delegate] != nil) {
         //send the delegate function with the amount entered by the user
-        [[self delegate]tickInterval:[NSNumber numberWithInt:[self beatNumber]]];
+        [[self delegate]tickInterval:[NSNumber numberWithInt:[self currentBeat]]];
     }
 }
 @end

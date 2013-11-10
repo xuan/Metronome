@@ -33,7 +33,7 @@
                                                            clockwise:YES];
     [circleLayer setPath:circlePath.CGPath];
     [circleLayer setLineWidth:15];
-    [circleLayer setStrokeColor:[UIColor blueColor].CGColor];
+    [circleLayer setStrokeColor:[UIColor grayColor].CGColor];
     
     return circleLayer;
 }

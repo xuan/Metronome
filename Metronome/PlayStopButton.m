@@ -52,7 +52,7 @@
     UIBezierPath* roundPathPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(4, 4, 48, 48)];
     [[self roundLayer] setPath:roundPathPath.CGPath];
     [[self roundLayer] setLineWidth:2];
-    [[self roundLayer] setStrokeColor:[UIColor blueColor].CGColor];
+    [[self roundLayer] setStrokeColor:[UIColor grayColor].CGColor];
     
     [[self layer]addSublayer:[self roundLayer]];
 }
@@ -64,7 +64,7 @@
     UIBezierPath* stopPath = [UIBezierPath bezierPathWithRect: CGRectMake(14, 14, 28, 28)];
     [[self stopLayer] setPath:stopPath.CGPath];
     [[self stopLayer] setLineWidth:2];
-    [[self stopLayer] setStrokeColor:[UIColor blueColor].CGColor];
+    [[self stopLayer] setStrokeColor:[UIColor grayColor].CGColor];
     
     [[self layer]addSublayer:[self stopLayer]];
 }
@@ -82,7 +82,7 @@
     
     [[self playLayer] setPath:playPath.CGPath];
     [[self playLayer] setLineWidth:2];
-    [[self playLayer] setStrokeColor:[UIColor blueColor].CGColor];
+    [[self playLayer] setStrokeColor:[UIColor grayColor].CGColor];
     [[self layer]addSublayer:[self playLayer]];
 }
 

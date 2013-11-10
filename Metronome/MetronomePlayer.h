@@ -14,9 +14,10 @@
 @interface MetronomePlayer : NSObject
 
 @property NSNumber *bpmInterval;
-@property NSNumber *signature;
+@property NSNumber *numberOfBeatsPerMeasure;
+@property NSNumber *timeValueOfEachBeat;
 
-- (id)initWithAudio:(NSString*)audio : (NSNumber*)signature : (NSNumber*) bpmInterval andDelegate:(id)del;
+- (id)initWithAudio:(NSString*)audio numberOfBeatsPerMeasure:(NSNumber*)tvb timeValueOfEachBeat:(NSNumber*)tvb beatsPerMinute:(NSNumber*)bpmInterval andDelegate:(id)del;
 
 - (void)startMetronome;
 - (void)stopMetronome;

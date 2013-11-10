@@ -33,7 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setMetronomePlayer:[[MetronomePlayer alloc]initWithAudio:@"tick" :[NSNumber numberWithInt:4] :[NSNumber numberWithInt:40] andDelegate:self]];
+
+    
+    [self setMetronomePlayer:[[MetronomePlayer alloc]initWithAudio:@"tick" numberOfBeatsPerMeasure:@4 timeValueOfEachBeat:@4 beatsPerMinute:@40 andDelegate:self]];
     
     UIView *rotaryContainer = [[UIView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
     
