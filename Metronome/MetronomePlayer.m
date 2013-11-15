@@ -8,6 +8,13 @@
 
 #import "MetronomePlayer.h"
 #import "AudioSamplePlayer.h"
+#import "MetronomeConstants.h"
+
+#define WHOLE_NOTE(note)    ((60.0 / note) * 4)
+#define HALF_NOTE(note)     ((60.0 / note) * 2)
+#define QUARTER_NOTE(note)  (60.0 / note)
+#define EIGHTH_NOTE(note)   ((60.0 / note) / 2)
+#define SIXTEEN_NOTE(note)   ((60.0 / note) / 4)
 
 @interface MetronomePlayer ()
 
@@ -27,21 +34,21 @@
     if (self) {
         [self setAudio:@"tick"];
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:[self audio]];
-        [self setTimeValueOfEachBeat:[NSNumber numberWithInt:4]];
-        [self setBpmInterval:[NSNumber numberWithInt:40]];
+        [self setBottomSignature:[NSNumber numberWithInt:DEFAULT_BOTTOM_SIGNAUTRE]];
+        [self setTempo:[NSNumber numberWithInt:DEFAULT_BPM_ON_STARTUP]];
     }
     return self;
 }
 
-- (id)initWithAudio:(NSString*)audio numberOfBeatsPerMeasure:(NSNumber*)nbpm timeValueOfEachBeat:(NSNumber*)tvb beatsPerMinute:(NSNumber*)bpmInterval andDelegate:(id)del{
+- (id)initWithAudio:(NSString*)audio topSignature:(NSNumber*)top bottomSignature:(NSNumber*)bottom beatsPerMinute:(NSNumber*)bpmInterval andDelegate:(id)del {
     self = [super init];
     if (self) {
         [self setDelegate:del];
         [self setAudio:audio];
         [[AudioSamplePlayer sharedInstance] preloadAudioSample:audio];
-        [self setNumberOfBeatsPerMeasure:nbpm];
-        [self setTimeValueOfEachBeat:tvb];
-        [self setBpmInterval:bpmInterval];
+        [self setTopSignature:top];
+        [self setBottomSignature:bottom];
+        [self setTempo:bpmInterval];
     }
     return self;
 }
@@ -96,7 +103,7 @@
          beatNumber must return to the first beat.
          */
         self.currentBeat++;
-        if ([self currentBeat] > [[self timeValueOfEachBeat]intValue]) {
+        if ([self currentBeat] > [[self topSignature]intValue]) {
             [self setCurrentBeat:1];
         }
         
@@ -104,7 +111,7 @@
          when to play the next beat. We also need to check if the loop has
          been cancelled.
          */
-        NSDate *curtainTime = [NSDate dateWithTimeIntervalSinceNow:60.0 / [[self bpmInterval]doubleValue]];
+        NSDate *curtainTime = [NSDate dateWithTimeIntervalSinceNow:[self getNote]];
         NSDate *currentTime = [NSDate date];
         while ([self isPlaying] && ([currentTime compare:curtainTime] != NSOrderedDescending)) {
             [NSThread sleepForTimeInterval:0.01];
@@ -113,10 +120,25 @@
     }
 }
 
+-(double)getNote {
+    double tempoInDouble = [[self tempo]doubleValue];
+    if([[self bottomSignature]intValue] == 1){
+        return WHOLE_NOTE(tempoInDouble);
+    } else if([[self bottomSignature]intValue] == 2){
+        return HALF_NOTE(tempoInDouble);
+    } else if([[self bottomSignature]intValue] == 3){
+        return QUARTER_NOTE(tempoInDouble);
+    } else if([[self bottomSignature]intValue] == 4){
+        return EIGHTH_NOTE(tempoInDouble);
+    } else {
+        return SIXTEEN_NOTE(tempoInDouble);
+    }
+}
+
 -(void)sendTick {
     if([self delegate] != nil) {
         //send the delegate function with the amount entered by the user
-        [[self delegate]tickInterval:[NSNumber numberWithInt:[self currentBeat]]];
+        [[self delegate]tickSoundHasPlayed:[NSNumber numberWithInt:[self currentBeat]]];
     }
 }
 @end

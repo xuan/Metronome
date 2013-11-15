@@ -48,6 +48,7 @@
 		AF0EA04D1810B64E00CA0D35 /* AudioSamplePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSamplePlayer.m; sourceTree = "<group>"; };
 		AF0EA04F1810B86E00CA0D35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		AF0EA0511810B97100CA0D35 /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick.caf; sourceTree = "<group>"; };
+		AF26FAF7183053DC00C8392B /* MetronomeConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetronomeConstants.h; sourceTree = "<group>"; };
 		AF5AA05B18130BAA00B57F74 /* tick2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick2.caf; sourceTree = "<group>"; };
 		AF6D15711823304A003A0B43 /* PlayStopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStopButton.h; sourceTree = "<group>"; };
 		AF6D15721823304A003A0B43 /* PlayStopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayStopButton.m; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 				AFA06EB918105F2D00067C66 /* Supporting Files */,
 				AFA06EC718105F2D00067C66 /* ViewController.h */,
 				AFA06EC818105F2D00067C66 /* ViewController.m */,
+				AF26FAF7183053DC00C8392B /* MetronomeConstants.h */,
 			);
 			path = Metronome;
 			sourceTree = "<group>";

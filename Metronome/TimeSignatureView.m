@@ -8,7 +8,7 @@
 
 #import "TimeSignatureView.h"
 
-#define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees) / 180)
+#define DEGREES_TO_RADIANS(degrees)((M_PI * degrees) / 180)
 
 @implementation TimeSignatureView {
     

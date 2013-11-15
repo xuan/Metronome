@@ -8,6 +8,7 @@
 
 #import "RotaryWheel.h"
 #import "DialView.h"
+#import "MetronomeConstants.h"
 
 @interface RotaryWheel()
 
@@ -31,7 +32,7 @@
         self.backgroundColor = [UIColor clearColor];
         [self drawWheel];
         [self drawTapButton];
-        [self setCumulatedValue:40];
+        [self setCumulatedValue:DEFAULT_BPM_ON_STARTUP];
         [self setLastTapped:0];
     }
     return self;
@@ -44,7 +45,7 @@
         self.backgroundColor = [UIColor clearColor];
         [self drawWheel];
         [self drawTapButton];
-        [self setCumulatedValue:40];
+        [self setCumulatedValue:DEFAULT_BPM_ON_STARTUP];
         [self setLastTapped:0];
     }
     return self;
@@ -58,7 +59,7 @@
         [self setDelegate:del];
         [self drawWheel];
         [self drawTapButton];
-        [self setCumulatedValue:40];
+        [self setCumulatedValue:DEFAULT_BPM_ON_STARTUP];
         [self setLastTapped:0];
     }
     return self;
@@ -100,7 +101,7 @@
     
     CGPoint touchPoint = [touch locationInView:self];
     float dist = [self calculateDistanceFromCenter:touchPoint];
-    
+
     if (dist < 100 || dist > 150) {
         return  NO;
     }
@@ -179,20 +180,21 @@
 }
 
 - (void)addValue:(float)value{
-    if(self.cumulatedValue < 400) {
+    if(self.cumulatedValue < MAX_BPM) {
         [self setCumulatedValue:[self cumulatedValue] + value];
         [[self delegate]wheelDidChangeValue:[self cumulatedValue]];
     }
 }
 
 - (void)subValue:(float)value{
-    if(self.cumulatedValue > 40) {
+    if(self.cumulatedValue > MIN_BPM) {
         [self setCumulatedValue:[self cumulatedValue] - value];
         [[self delegate]wheelDidChangeValue:[self cumulatedValue]];
     }
 }
 
 - (void)tapButtonPressed {
+    
     if (self.lastTapped == 0) {
         self.lastTapped = CACurrentMediaTime();
     } else {

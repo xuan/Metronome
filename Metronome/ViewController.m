@@ -12,6 +12,7 @@
 #import "RotaryWheel.h"
 #import "PlayStopButton.h"
 #import "TimeSignatureView.h"
+#import "MetronomeConstants.h"
 
 
 @interface ViewController ()
@@ -30,12 +31,14 @@
     
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     
-    [self setMetronomePlayer:[[MetronomePlayer alloc]initWithAudio:@"tick" numberOfBeatsPerMeasure:@4 timeValueOfEachBeat:@4 beatsPerMinute:@40 andDelegate:self]];
+    [self setMetronomePlayer:[[MetronomePlayer alloc]initWithAudio:@"tick"
+                                                      topSignature:@DEFAULT_TOP_SIGNATURE
+                                                   bottomSignature:@DEFAULT_BOTTOM_SIGNAUTRE
+                                                    beatsPerMinute:@DEFAULT_BPM_ON_STARTUP andDelegate:self]];
     
     UIView *rotaryContainer = [[UIView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
     
@@ -50,7 +53,7 @@
 
 - (void) wheelDidChangeValue:(float)newValue {
     int roundVal = (int) (newValue + 0.5);
-    [[self metronomePlayer]setBpmInterval:[NSNumber numberWithFloat:roundVal]];
+    [[self metronomePlayer]setTempo:[NSNumber numberWithFloat:roundVal]];
     [[self bpmLabel] setText:[NSString stringWithFormat:@"%i", roundVal]];
 }
 
@@ -68,8 +71,7 @@
 
 
 
--(void)setUIColor:(UIColor*)color
-{
+-(void)setUIColor:(UIColor*)color {
     [[self bpmLabel]setTextColor:color];
     [[self oneBtn]setChangeColor:color];
     [[self twoBtn]setChangeColor:color];
@@ -77,8 +79,7 @@
     [[self fourBtn]setChangeColor:color];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -93,7 +94,7 @@
     }
 }
 
--(void)tickInterval:(NSNumber*)tick {
+-(void)tickSoundHasPlayed:(NSNumber*)tick {
     if([tick intValue] == 1) {
         [[self oneBtn]on];
         [[self twoBtn]off];

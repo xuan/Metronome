@@ -8,16 +8,16 @@
 
 @protocol MetronomePlayerDelegate
 @optional
--(void)tickInterval:(NSNumber*)tick;
+-(void)tickSoundHasPlayed:(NSNumber*)tick;
 @end
 
 @interface MetronomePlayer : NSObject
 
-@property NSNumber *bpmInterval;
-@property NSNumber *numberOfBeatsPerMeasure;
-@property NSNumber *timeValueOfEachBeat;
+@property NSNumber *tempo;
+@property NSNumber *topSignature;
+@property NSNumber *bottomSignature;
 
-- (id)initWithAudio:(NSString*)audio numberOfBeatsPerMeasure:(NSNumber*)tvb timeValueOfEachBeat:(NSNumber*)tvb beatsPerMinute:(NSNumber*)bpmInterval andDelegate:(id)del;
+- (id)initWithAudio:(NSString*)audio topSignature:(NSNumber*)top bottomSignature:(NSNumber*)bottom beatsPerMinute:(NSNumber*)bpmInterval andDelegate:(id)del;
 
 - (void)startMetronome;
 - (void)stopMetronome;
