@@ -11,7 +11,6 @@
 #import "BeatButton.h"
 #import "RotaryWheel.h"
 #import "PlayStopButton.h"
-#import "TimeSignatureView.h"
 #import "MetronomeConstants.h"
 
 
@@ -39,19 +38,9 @@
                                                       topSignature:@DEFAULT_TOP_SIGNATURE
                                                    bottomSignature:@DEFAULT_BOTTOM_SIGNAUTRE
                                                     beatsPerMinute:@DEFAULT_BPM_ON_STARTUP andDelegate:self]];
-    
-    UIView *rotaryContainer = [[UIView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
-    
-    TimeSignatureView *ts = [[TimeSignatureView alloc]initWithFrame:CGRectMake(10, 248, 300, 300)];
-    [ts setBackgroundColor:[UIColor clearColor]];
-    [[self view]addSubview:ts];
-    
-    RotaryWheel *wheel = [[RotaryWheel alloc] initWithFrame:CGRectMake(0, 0, 300, 300) andDelegate:self];
-    [rotaryContainer addSubview:wheel];
-    [self.view addSubview:rotaryContainer];
 }
 
-- (void) wheelDidChangeValue:(float)newValue {
+- (void) bpmDidChangeValue:(float)newValue {
     int roundVal = (int) (newValue + 0.5);
     [[self metronomePlayer]setTempo:[NSNumber numberWithFloat:roundVal]];
     [[self bpmLabel] setText:[NSString stringWithFormat:@"%i", roundVal]];
