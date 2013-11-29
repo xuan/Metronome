@@ -114,7 +114,7 @@
         NSDate *curtainTime = [NSDate dateWithTimeIntervalSinceNow:[self getNote]];
         NSDate *currentTime = [NSDate date];
         while ([self isPlaying] && ([currentTime compare:curtainTime] != NSOrderedDescending)) {
-            [NSThread sleepForTimeInterval:0.01];
+            [NSThread sleepForTimeInterval:0.001];
             currentTime = [NSDate date];
         }
     }
@@ -126,9 +126,9 @@
         return WHOLE_NOTE(tempoInDouble);
     } else if([[self bottomSignature]intValue] == 2){
         return HALF_NOTE(tempoInDouble);
-    } else if([[self bottomSignature]intValue] == 3){
-        return QUARTER_NOTE(tempoInDouble);
     } else if([[self bottomSignature]intValue] == 4){
+        return QUARTER_NOTE(tempoInDouble);
+    } else if([[self bottomSignature]intValue] == 8){
         return EIGHTH_NOTE(tempoInDouble);
     } else {
         return SIXTEEN_NOTE(tempoInDouble);

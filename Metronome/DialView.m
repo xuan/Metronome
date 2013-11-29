@@ -32,7 +32,7 @@
  * Default init for frame and coder
  */
 -(void) initCommon {
-    [self setBackgroundColor:[UIColor blueColor]];
+    [self setBackgroundColor:[UIColor clearColor]];
     [[self layer]setAnchorPoint:CGPointMake(0.5f, 0.5f)];
     [self setClipsToBounds:NO];
 }

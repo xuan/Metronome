@@ -86,7 +86,7 @@
 -(void)drawTapButton {
     CAShapeLayer *tapLayer = [CAShapeLayer layer];
     
-    [tapLayer setFillColor:[UIColor purpleColor].CGColor];
+    [tapLayer setFillColor:[UIColor clearColor].CGColor];
     
     UIButton *tapButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, [self bounds].size.width/2, [self bounds].size.height/2)];
     [tapButton addTarget:self action:@selector(tapButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -94,12 +94,12 @@
     UIBezierPath* tapButtonPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(0, 0, [self bounds].size.width/2, [self bounds].size.height/2)];
     [tapLayer setPath:tapButtonPath.CGPath];
     [tapLayer setLineWidth:2];
-    [tapLayer setFillColor:[UIColor greenColor].CGColor];
+    [tapLayer setFillColor:[UIColor clearColor].CGColor];
     [tapLayer setStrokeColor:[UIColor grayColor].CGColor];
-    [tapLayer setBackgroundColor:[UIColor redColor].CGColor];
+    [tapLayer setBackgroundColor:[UIColor clearColor].CGColor];
     [[tapButton layer]addSublayer: tapLayer];
     [tapButton setCenter:[container center]];
-    [[self container]addSubview:tapButton];
+    [self addSubview:tapButton];
 }
 
 #pragma mark - Wheel Touch Controls
@@ -109,7 +109,7 @@
     CGPoint touchPoint = [touch locationInView:self];
     float dist = [self calculateDistanceFromCenter:touchPoint];
     
-    if (dist < 100 || dist > 150) {
+    if (dist < 75 || dist > 150) {
         return  NO;
     }
     float dx = touchPoint.x - [container center].x;
@@ -125,7 +125,7 @@
     CGPoint previousPt = [touch previousLocationInView:self];
     float dist = [self calculateDistanceFromCenter:pt];
     
-    if (dist < 100) {
+    if (dist < 75) {
         return NO;
     }
     
@@ -193,7 +193,7 @@
     }
 }
 
-- (void)subValue:(float)value{
+- (void)subValue:(float)value {
     if(self.cumulatedValue > MIN_BPM) {
         [self setCumulatedValue:[self cumulatedValue] - value];
         [[self delegate]bpmDidChangeValue:[self cumulatedValue]];
@@ -203,7 +203,7 @@
 #pragma mark - Tap Button Control
 
 - (void)tapButtonPressed {
-    
+    NSLog(@"tapped");
     if (self.lastTapped == 0) {
         self.lastTapped = CACurrentMediaTime();
     } else {
