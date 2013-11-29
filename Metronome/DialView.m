@@ -15,7 +15,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [self initialize];
+        [self initCommon];
     }
     return self;
 }
@@ -23,7 +23,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initialize];
+        [self initCommon];
     }
     return self;
 }
@@ -31,7 +31,7 @@
 /*!
  * Default init for frame and coder
  */
--(void) initialize {
+-(void) initCommon {
     [self setBackgroundColor:[UIColor clearColor]];
     [[self layer]setAnchorPoint:CGPointMake(0.5f, 0.5f)];
     [self setClipsToBounds:NO];

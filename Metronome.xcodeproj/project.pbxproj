@@ -29,8 +29,8 @@
 		AFA06ED418105F2D00067C66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA06EB618105F2D00067C66 /* UIKit.framework */; };
 		AFA06EDC18105F2D00067C66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFA06EDA18105F2D00067C66 /* InfoPlist.strings */; };
 		AFA06EDE18105F2D00067C66 /* MetronomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA06EDD18105F2D00067C66 /* MetronomeTests.m */; };
+		AFA68E8A183FFE31000BE0F4 /* TapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA68E89183FFE31000BE0F4 /* TapButton.m */; };
 		AFEE33D818122E2F00302CB0 /* MetronomePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEE33D718122E2F00302CB0 /* MetronomePlayer.m */; };
-		AFF96CC11829E8860005671D /* TimeSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF96CC01829E8860005671D /* TimeSignatureView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +48,7 @@
 		AF0EA04D1810B64E00CA0D35 /* AudioSamplePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSamplePlayer.m; sourceTree = "<group>"; };
 		AF0EA04F1810B86E00CA0D35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		AF0EA0511810B97100CA0D35 /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick.caf; sourceTree = "<group>"; };
+		AF25201A183ABD290040E3B0 /* BeatsPerMinuteProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeatsPerMinuteProtocol.h; sourceTree = "<group>"; };
 		AF26FAF7183053DC00C8392B /* MetronomeConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetronomeConstants.h; sourceTree = "<group>"; };
 		AF5AA05B18130BAA00B57F74 /* tick2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick2.caf; sourceTree = "<group>"; };
 		AF6D15711823304A003A0B43 /* PlayStopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStopButton.h; sourceTree = "<group>"; };
@@ -77,10 +78,10 @@
 		AFA06ED918105F2D00067C66 /* MetronomeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetronomeTests-Info.plist"; sourceTree = "<group>"; };
 		AFA06EDB18105F2D00067C66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AFA06EDD18105F2D00067C66 /* MetronomeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetronomeTests.m; sourceTree = "<group>"; };
+		AFA68E88183FFE31000BE0F4 /* TapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapButton.h; sourceTree = "<group>"; };
+		AFA68E89183FFE31000BE0F4 /* TapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapButton.m; sourceTree = "<group>"; };
 		AFEE33D618122E2F00302CB0 /* MetronomePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetronomePlayer.h; sourceTree = "<group>"; };
 		AFEE33D718122E2F00302CB0 /* MetronomePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetronomePlayer.m; sourceTree = "<group>"; };
-		AFF96CBF1829E8860005671D /* TimeSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignatureView.h; sourceTree = "<group>"; };
-		AFF96CC01829E8860005671D /* TimeSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +163,7 @@
 			children = (
 				AF746C89181883000014E3FA /* DialView.h */,
 				AF746C8A181883000014E3FA /* DialView.m */,
-				AFF96CBF1829E8860005671D /* TimeSignatureView.h */,
-				AFF96CC01829E8860005671D /* TimeSignatureView.m */,
+				AF25201A183ABD290040E3B0 /* BeatsPerMinuteProtocol.h */,
 				AF746C86181880850014E3FA /* RotaryWheel.h */,
 				AF746C87181880850014E3FA /* RotaryWheel.m */,
 				AF5AA05A18130AD400B57F74 /* sounds */,
@@ -176,6 +176,8 @@
 				AF6D15721823304A003A0B43 /* PlayStopButton.m */,
 				AFA06ECA18105F2D00067C66 /* Images.xcassets */,
 				AFA06EC418105F2D00067C66 /* Main.storyboard */,
+				AFA68E88183FFE31000BE0F4 /* TapButton.h */,
+				AFA68E89183FFE31000BE0F4 /* TapButton.m */,
 				AFEE33D618122E2F00302CB0 /* MetronomePlayer.h */,
 				AFEE33D718122E2F00302CB0 /* MetronomePlayer.m */,
 				AFA06EB918105F2D00067C66 /* Supporting Files */,
@@ -322,13 +324,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF6D15731823304A003A0B43 /* PlayStopButton.m in Sources */,
-				AFF96CC11829E8860005671D /* TimeSignatureView.m in Sources */,
 				AF746C8B181883000014E3FA /* DialView.m in Sources */,
 				AFA06EC918105F2D00067C66 /* ViewController.m in Sources */,
 				AF7378D7181247BC00172D6D /* BeatButton.m in Sources */,
 				AF746C88181880850014E3FA /* RotaryWheel.m in Sources */,
 				AFEE33D818122E2F00302CB0 /* MetronomePlayer.m in Sources */,
 				AFA06EC318105F2D00067C66 /* AppDelegate.m in Sources */,
+				AFA68E8A183FFE31000BE0F4 /* TapButton.m in Sources */,
 				AF0EA04E1810B64E00CA0D35 /* AudioSamplePlayer.m in Sources */,
 				AFA06EBF18105F2D00067C66 /* main.m in Sources */,
 			);
@@ -457,9 +459,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/xuannguyen/github/Metronome,
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metronome/Metronome-Prefix.pch";
 				INFOPLIST_FILE = "Metronome/Metronome-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/xuannguyen/github/Metronome,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -470,9 +481,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/xuannguyen/github/Metronome,
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metronome/Metronome-Prefix.pch";
 				INFOPLIST_FILE = "Metronome/Metronome-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/xuannguyen/github/Metronome,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

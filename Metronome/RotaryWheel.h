@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BeatsPerMinuteProtocol.h"
 
-@protocol RotaryWheelProtocol <NSObject>
-@required
-- (void) wheelDidChangeValue:(float)newValue;
-@end
 
 @interface RotaryWheel : UIControl {
 
 }
 
-@property (weak) id <RotaryWheelProtocol> delegate;
+@property (nonatomic, weak) id <BeatsPerMinuteProtocol> delegate;
 @property (nonatomic, strong) UIView *container;
 @property CGAffineTransform startTransform;
 

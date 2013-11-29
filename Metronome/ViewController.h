@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MetronomePlayer.h"
-#import "RotaryWheel.h"
+#import "BeatsPerMinuteProtocol.h"
 
-@interface ViewController : UIViewController <RotaryWheelProtocol, MetronomePlayerDelegate>
+@interface ViewController : UIViewController <BeatsPerMinuteProtocol, MetronomePlayerDelegate>
 
 @end
